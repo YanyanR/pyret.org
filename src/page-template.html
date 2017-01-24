@@ -15,18 +15,20 @@
                   [current-output-port (open-output-string)])
     (let ([res (sanitize-pygments-output (pygmentize/raw (apply string-append code) lang))])
       (xexpr->string `(div ([class ,(string-append "brush: " lang)]) ,@res)))))
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-
+    @;{ The at-exp reader for a template treats this as a comment.
+        Also, notice the use template variables like @title,
+        @description etc. }
     <meta charset="utf-8">
     <title>Pyret</title>
-    <meta name="description" content="The Pyret Programming Language:...">
+    <meta name="description" content="@|description|">
     <meta name="author"      content="The Pyret Crew">
-    <meta name="keywords"    content="">
-    <meta property="og:title" content="The Pyret Programming Language">
+    <meta name="keywords"    content="@|keywords|">
+    <meta property="og:title" content="@|title|">
     <meta property="og:author" content="The Pyret Crew">
-    <meta property="og:url" content="http://pyret.org/index.html">
+    <meta property="og:url" content="@|full-uri|">
     <meta property="og:image" content="http://www.pyret.org/img/pyret-logo.png">
     <meta property="og:image:secure_url" content="https://www.pyret.org/img/pyret-logo.png">
     <meta property="og:image:type" content="image/png">
@@ -34,7 +36,7 @@
     <meta property="og:image:height" content="445">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/img/pyret-icon.png">
-    <link rel="canonical" href="http://pyret.org/index.html">
+    <link rel="canonical" href="@|full-uri|">
     <!-- CSS -->
     <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css">
@@ -45,9 +47,9 @@
     <link rel="stylesheet" type="text/css" href="/css/custom.css">
     <!-- Feeds -->
     <link ref="alternate" type="application/atom+xml"
-          href="/feeds/all.atom.xml" title="Atom Feed">
+          href="@|atom-feed-uri|" title="Atom Feed">
     <link ref="alternate" type="application/rss+xml"
-          href="/feeds/all.rss.xml" title="RSS Feed">
+          href="@|rss-feed-uri|" title="RSS Feed">
     <!-- JS -->
 <script type="text/javascript">
 
@@ -87,227 +89,669 @@ s.parentNode.insertBefore(ga, s);
         <div class="collapse navbar-collapse our-nav-collapse"
              role="navigation">
           <ul class="nav navbar-nav">
-            <li><div class="dropdown">
-              <button class="btn btn-primary fancyhover-above dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown">
-                      About
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="/pyret-code/">Why Pyret?</a></li>
-                <li><a href="/crew/">Crew</a></li>
-                <li><a href="#">Research</a></li>
-              </ul>
-            </div></li>
-            <li><div class="dropdown">
-              <button class="btn btn-primary fancyhover-above dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown">
-                      Start Coding
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="https://code.pyret.org">Set Sail</a></li>
-              </ul>
-            </div></li>
-            <li><div class="dropdown">
-              <button class="btn btn-primary fancyhover-above dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown">
-                      Resources
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="http://www.pyret.org/docs/latest/A_Tour_of_Pyret.html">Beginner Tutorial</a></li>
-                <li><a href="/docs/latest/">Documentation</a></li>
-                <li><a href="http://www.bootstrapworld.org/materials/spring2017/courses/bs2/index.shtml">Bootstrap2 Curriculum</a></li>
-                <li><a href="#">Textbooks</a></li>
-              </ul>
-            </div></li>
-            <li><div class="dropdown">
-              <button class="btn btn-primary fancyhover-above dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown">
-                      Discuss
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="/discuss">Forum</a></li>
-                <li><a href="/discuss">News</a></li>
-              </ul>
-            </div></li>
-            <li><div class="dropdown">
-              <button class="btn btn-primary fancyhover-above dropdown-toggle"
-                      type="button"
-                      data-toggle="dropdown">
-                      Join Us
-                <span class="caret"></span>
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                <li><a href="https://github.com/brownplt/pyret-lang">Source Code</a></li>
-                <li><a href="#">Social Media</a></li>
-              </ul>
-            </div></li>
+            <li><a class="fancyhover-above" href="/pyret-code/">Why Pyret?</a></li>
+            <li><a class="fancyhover-above" target="_blank" href="https://code.pyret.org">Set Sail</a></li>
+            <li><a class="fancyhover-above" href="/discuss/">News &amp; Discussion</a></li>
+            <li><a class="fancyhover-above" href="/docs/latest/">Documentation</a></li>
+            <li><a class="fancyhover-above" href="https://github.com/brownplt/pyret-lang">Code</a></li>
+            <li><a class="fancyhover-above" href="/crew/">Crew</a></li>
           </ul>
         </div>
     </header>
-        <div class="jumbotron">
-          <div class="container">
-        <div class="row">
-          <div class="col-md-6">
-          <img class="title-logo" src="/img/pyret-banner.png"></img>
-          <p>
-            <i> Designed by computer science educators, for computer science
-              education.
-            </i>
-          <p>
-          Pyret is a programming language designed to serve as an outstanding
-          choice for programming education while exploring the confluence
-          of scripting and functional programming.
-          </p>
-          <p>
-            <a href="/#accessible" class="btn btn-primary btn-m hvr-border-fade">Accessible</a>
-            <a href="/#pedagogic" class="btn btn-primary btn-m hvr-border-fade">Pedagogic</a>
-            <a href="/#rigorous" class="btn btn-primary btn-m hvr-border-fade">Rigorous</a>
-            <a href="/#community" class="btn btn-primary btn-m hvr-border-fade">Community</a>
-          </p>
-          </div>
+    @(when (string-ci=? uri-path "/index.html")
+    @list{
+    <div class="jumbotron">
+      <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+      <img class="title-logo" src="/img/pyret-banner.png"></img>
+      <p>
+      Pyret is a programming language designed to serve as an outstanding
+      choice for programming education while exploring the confluence
+      of scripting and functional programming.  It's under active design and
+      development, and free to use or modify.
+      </p>
+      <p>
+        <a href="/#examples" class="btn btn-primary btn-m hvr-border-fade">Examples</a>
+        <a href="./pyret-code/" class="btn btn-primary btn-m hvr-border-fade">Why Pyret?</a>
+        <a target="_blank" href="https://code.pyret.org" class="btn btn-primary btn-m hvr-border-fade">Set Sail</a>
+        <a href="/discuss/" class="btn btn-primary btn-m hvr-border-fade">News &amp; Discussion</a>
+      </p>
+      </div>
+      <div class="col-md-6">
+<div id="main-carousel" class="container carousel slide" data-interval="false">
 
-          <div class="col-md-6">
-            <h2> Project Examples </h2>
-            <div class="col-md-6">
-              <a href="https://code.pyret.org/editor#share=0B32bNEogmncOQ25ZOHBoR3ZNcUE&v=80ba55b" class="thumbnail">
-                <img src="/img/ninjacat.png" style="width:100%;border:0;"></img>
-              </a>
-              <p> Ninja Cat </p>
-              <a href="https://code.pyret.org/editor#share=0B32bNEogmncOWU9OWW5MSFlHSDQ" class="thumbnail">
-                <img src="/img/derivative.png" style="width:100%;border:0;"></img>
-              </a>
-              <p> Compute a Derivative </p>
-            </div>
-            <div class="col-md-6">
-              <a href="https://code.pyret.org/editor#share=0B32bNEogmncOTEJjQ1VicHdlYmc" class="thumbnail">
-                <img src="/img/sort-list.png" style="width:100%;border:0;"></img>
-              </a>
-              <p> Sort a List </p>
-              <a href="https://code.pyret.org/editor#share=0B32bNEogmncOMTg5T2plV19LX0k" class="thumbnail">
-                <img src="/img/2048.png" style="width:100%;border:0;"></img>
-              </a>
-              <p> Play 2048 </p>
-            </div>
-          </div>
-        </div>
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    <div class="item active">
+      <pre>
+@disable-prefix{
+data BinTree:
+  | leaf
+  | node(value, left, right)
+end
+
+fun tree-sum(t):
+  doc: "Calculate the sum of node values"
+  cases(BinTree) t:
+    | leaf => 0
+    | node(v, l, r) =>
+      v + tree-sum(l) + tree-sum(r)
+  end
+where:
+  tree-sum(leaf) is 0
+  node4 = node(4, leaf, leaf)
+  tree-sum(node(5, node4, leaf)) is 9
+end
+}
+      </pre>
+    </div>
+    <div class="item">
+      <pre>
+@disable-prefix{
+# Identifiers are immutable.
+# Variables are different from identifiers.
+fun mk-counter():
+  var ctr = 0
+  lam():
+    ctr := ctr + 1
+    ctr
+  end
+where:
+  l1 = mk-counter()
+  l1() is 1
+  l1() is 2
+  l2 = mk-counter()
+  l2() is 1
+  l1() is 3
+  l2() is 2
+end
+}
+      </pre>
+    </div>
+    <div class="item">
+      <pre>
+@disable-prefix{
+
+
+for map(n from [list: 1,2,3]): n * n end
+# ==> [list: 1, 4, 9]
+
+for filter(n from [list: 1, 2, 3]):
+  n >= 2
+end
+# ==> [list: 2, 3]
+
+for fold(sum from 0, n from [list: 4, 5, 6]):
+  sum + n
+end
+# ==> 15
+}
+      </pre>
+    </div>
+    <div class="item">
+      <pre>
+@disable-prefix{
+# Note the refinements on the
+# l argument and the result.
+# The refinements are critical to the
+# correct behavior of insertion.
+
+fun insert(n :: Number,
+           l :: List<Number> % (is-sorted-ascending))
+  -> List<Number> % (is-sorted-ascending):
+  cases (List) l:
+    | empty => [list: n]
+    | link(f, r) =>
+      if n < f: link(n, l)
+      else:     link(f, insert(n, r))
+      end
+  end
+end
+}
+      </pre>
+    </div>
+    <div class="item">
+      <pre>
+@disable-prefix{
+
+
+eps = 0.001
+fun d-dx(f):
+  doc: "Calculate the derivative of f"
+  lam(x): (f(x + eps) - f(x)) / eps;
+where:
+  fun square(x): x * x;
+  fun around(delta, target): ...;
+
+  dsquare = d-dx(square)
+
+  dsquare(5) satisfies around(0.1, 10)
+  dsquare(10) satisfies around(0.1, 20)
+end
+}
+      </pre>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#main-carousel" data-slide="prev">
+    <span class="icon-prev"></span>
+  </a>
+  <a class="right carousel-control" href="#main-carousel" data-slide="next">
+    <span class="icon-next"></span>
+  </a>
+</div>
       </div>
     </div>
+  </div>
+    </div>
+    })
+    <div class="container">
+      <div class="row">
+        @;{ Remember that Twitter Bootstrap has a 12 cell model. The
+            col-md-N classes should add up to 12.  For instance 3
+            "col-md-4" divs, or 2 "col-md-6" divs. }
+        <!-- Main column -->
+        <div id="content" class="col-md-12">
+@(when (string-ci=? uri-path "/index.html")
+  @(define (info-code code info)
+    @disable-prefix{<span class="info" title="@|info|">@|code|</span>})
+
+  @(define (two-langs header words other-lang pyret-code other-code)
+     (define other-block
+         @list{
+         <div class="col-md-4"><b>@|other-lang|</b>@disable-prefix[other-code]</div>
+         })
+    (define pyret-block
+      @list{
+      <div class="col-md-4"><b>Pyret</b><pre>@|pyret-code|</pre> </div>
+      })
+    (define description-block
+      @list{
+      <div class="col-md-4"><b>@|header|</b><p>@|words|</p></div>
+      })
+    @list{
+      <div class="row">
+        @description-block
+        @other-block
+        @pyret-block
+      </div>
+    })
+
+  @(define (pyret-example code description #:where (where 'left))
+    (define code-block
+      @list{
+      <div class="col-md-6"> <pre>@|code|</pre> </div>
+      })
+    (define description-block @list{
+      <div class="col-md-4">
+      <p>@|description|</p>
+      </div>
+    })
+    (cond
+      [(equal? where 'left) @list{
+          <div class="row">
+            <div class="col-md-1"></div>
+        @|code-block|
+        @|description-block|
+            <div class="col-md-1"></div>
+          </div>
+            }]
+            [(equal? where 'right) @list{
+          <div class="row">
+            <div class="col-md-1"></div>
+        @|description-block|
+        @|code-block|
+            <div class="col-md-1"></div>
+          </div>
+        }]))
 
 
-<!-- Main column -->
-<div id="content" class="col-md-12">
+@list{
 
-<hr/>
-<a name="accessible"></a>
-<h2> Accessible </h2>
+
+<a name="examples"></a>
+<h2>Programming in Pyret</h2>
 <div style="height:2em;"></div>
 <div class="container">
-    <div class="row">
-      <div class="col-md-1"></div>
-  <div class="col-md-6">
-    <img src="/img/phone-editor.png" style="width:100%;border:0;"></img>
-  </div>
-  <div class="col-md-4">
-  <p>Pyret is free to use, and runs entirely inside the browser.
-    This means that no software download is needed. You can access Pyret from
-    a computer in a public library, a tablet, or any device with a web browser
-    that supports JavaScript. Here's a snapshot of a Pyret program running on
-    an iPhone. <br>
-    <a href="https://code.pyret.org"> Try it now!</a>
-  </p>
-  </div>
-      <div class="col-md-1"></div>
-    </div>
+  @(pyret-example
+@disable-prefix{
+fun to-celsius(f):
+  (f - 32) * (5 / 9)
+end
+
+for each(str from [list: "Ahoy", "world!"]):
+  print(str)
+end}
+"Pyret has Python-inspired syntax for functions, lists, and operators.
+Iteration constructs are designed to be evocative of those in other languages.")
 
   <hr/>
-  <a name="pedagogic"></a>
-  <h2> Pedagogic </h2>
-    <div class="row">
-      <div class="col-md-1"></div>
-  <div class="col-md-4">
-  <p>Pyret is being actively used from middle school to college, for courses
-    such as Intro to Programming, Physics, and Programming Languages.
-    Here are some curriculums and textbooks based on Pyret. <br>
-    Check out Resources tab to find the right materials for your class!
-  </p>
-  </div>
-  <div class="col-md-3">
-    <a href="http://www.bootstrapworld.org/materials/spring2017/courses/bs2/index.shtml" class="thumbnail">
-      <img src="/img/bootstrap.png" style="width:100%;border:0;"></img>
-    </a>
-    <p> Programming curriculum suitable for grades 8-11 </p>
-  </div>
-  <div class="col-md-3">
-    <a href="http://papl.cs.brown.edu/2016/" class="thumbnail">
-      <img src="/img/papl.png" style="width:100%;border:0;"></img>
-    </a>
-    <p> PAPL textbook used at Brown University for CS019 </p>
-  </div>
-      <div class="col-md-1"></div>
-    </div>
+  @(pyret-example #:where 'right
+@disable-prefix{
+fun sum(l):
+  cases(List) l:
+    | empty => 0
+    | link(first, rest) => first + sum(rest)
+  end
+where:
+  sum([list: ]) is 0
+  sum([list: 1, 2, 3]) is 6
+end
+}
+"Pyret makes testing a natural part of the programming process.  Functions can
+end in a <code>where:</code> clause that holds unit tests for the
+function. These assertions are checked dynamically.")
 
   <hr/>
-  <a name="rigorous"></a>
-  <h2> Rigorous </h2>
-    <div class="row">
-      <div class="col-md-1"></div>
-  <div class="col-md-6">
-    <img src="/img/pyret-strength.png" style="width:100%;border:0;"></img>
- </div>
-  <div class="col-md-4">
-  <p>Pyret helps teach students authentic programming, not only coding skills,
-    but also computational thinking. Pyret is good for introcuding students to
-    these topics. <br>
-    For more details, see <a href="/pyret-code/"> Why Pyret</a>, a
-    rationale for Pyret.
-  </p>
-  </div>
-      <div class="col-md-1"></div>
-    </div>
+  @(pyret-example #:where 'left
+@disable-prefix{
+data BinTree:
+  | leaf
+  | node(value, left :: BinTree, right :: BinTree)
+end
+}
+"Pyret allows for concise, expressive, recursive data declarations.  Type
+annotations are optional and can be added incrementally, to serve a
+variety of pedagogic styles and curricular needs.")
 
   <hr/>
-  <a name="community"></a>
-  <h2> Community </h2>
-    <div class="row">
-      <div class="col-md-1"></div>
-  <div class="col-md-4">
-  <p> Pyret is under active design and development. We actively dogfood Pyret
-    both as teachers (actively teaching with it) and as programmers (actively
-    building things with it), which gives us ongoing feedback about its points
-    of friction.  <br>
-    Join the <a href="/discuss/"> discussion forum</a> and get your questions
-    answered by the language designers!
-  </p>
-  </div>
-  <div class="col-md-6">
-    <img src="/img/forum.png" style="width:100%;border:0;"></img>
-  </div>
-      <div class="col-md-1"></div>
-    </div>
 
+  @(pyret-example #:where 'right
+@disable-prefix{
+check:
+  fun get-status(url):
+    request({
+        url: url,
+        verb: "get",
+        params: [list: ]
+      }).status-code
+  end
+  get-status("http://google.com/") is 200
+end
+}
+"In addition to <code>where:</code> blocks, which are attached to
+  individual definitions (and hence usually contain unit tests), you
+  can also write <code>check:</code> blocks at the top level, for
+  general program testing. Both are scope delimiters. Therefore, you
+  can use them to write local definitions that are useful for testing
+  but not relevant to the program at large.")
+
+  <hr/>
+
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <p><b>Some thoughts on syntax</b></p>
+<p>
+We believe indentation is critical for readable code, but we don't
+want the whitespace of the program to determine its meaning. Rather,
+the meaning of the program should determine its indentation
+structure. Indentation becomes just another context-sensitive rule.
+</p>
+
+<p> Unambiguous syntax (the reason for explicit <code>end</code> delimiters)
+means you can copy-and-paste code from email or the Web, and its meaning won't
+change. Your IDE can help you reindent code without worrying that doing so will
+change the meaning of the program.  </p>
+
+<p>
+We haven't yet decided on the indentation rules because we want to see
+the language in use for a while before we codify these.
+</p>
+
+  </div>
+  <div class="col-md-2"></div>
 </div>
 
 
+  <hr/>
+  @(pyret-example #:where 'right
+@disable-prefix{
+eps = 0.001
+fun d-dx(f):
+  doc: "Approximate the derivative of f"
+  lam(x): (f(x + eps) - f(x)) / eps;
+where:
+  fun square(x): x * x;
+  fun around(delta, target):
+    lam(actual): num-abs(actual - target) < delta;;
+
+  dsquare = d-dx(square)
+
+  dsquare(5) satisfies around(0.1, 10)
+  dsquare(10) satisfies around(0.1, 20)
+end
+}
+"Real tests need to accomodate more than equality tests.  Pyret supports these
+generally with the <code>satisfies</code> form, which can be used to check
+satisfaction of an arbitrary predicate.")
+
+
+  <hr/>
+
+  @(pyret-example #:where 'left
+@disable-prefix{
+point-methods = {
+  dist(self, other):
+    ysquared = num-expt(other.y - self.y, 2)
+    xsquared = num-expt(other.x - self.x, 2)
+    num-sqrt(ysquared + xsquared)
+  end
+}
+
+fun make-point(x, y):
+  point-methods.{ x: x, y: y }
+end
+
+check:
+  p1 = make-point(1, 2)
+  p2 = make-point(1, 5)
+
+  p1.dist(p2) is 3
+end
+}
+
+"Pyret has a straightforward object model, from which more complex
+patterns can be defined.  An object is defined by methods and fields within
+curly braces (as in <code>point-methods</code>), and can be extended
+with <code>.{}</code>.  This example shows a simple class-like
+pattern built up from simple objects.  Objects, like most other values in
+Pyret, are immutable by default, so instances of points are created by
+extending the object containing point methods.")
+
+  <hr/>
 
 
 
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <p>Like what you see?  Sign up for the <a href="/discuss/">announcements
+mailing list</a> and get notified when Pyret has a stable release.  Or, if
+you want to try things out in their early state, just <a
+href="/getting-started/">get started</a>!
+  </div>
+  <div class="col-md-2"></div>
+</div>
+  <hr/>
 
-          <div class="row paragraph-content">
-          <div class="col-md-2"></div>
-          <div class="col-md-8">
+<h2>Highlights vs. Existing Languages</h2>
+<div style="height:2em;"></div>
+  @(two-langs
+"Annotations"
+"Most “scripting” languages don't support annotations for checking parameters
+and return values; Pyret does."
+"Python"
+@disable-prefix{
+fun square(n :: Number) -> Number:
+  n * n
+end
+}
+@pygmentize["python"]{
+def square(n):
+  return n * n
+}
+)
+  <hr/>
+@(two-langs
+"<em>Optional</em> Annotations"
+"But Pyret doesn't force you to annotate everything, as some other
+languages do."
+"Java"
+@disable-prefix{
+fun square(n) -> Number:
+  n * n
+end}
+@pygmentize["java"]{
+static int square(int n) @"{"
+  return n * n;
+@"}"})
+  <hr/>
+@(two-langs
+"Refinements in Annotations"
+"Pyret allows you to (optionally) describe <em>refinements</em> of data."
+"Python"
+@disable-prefix{
+fun insert(e :: Number,
+           s :: BST % (is-balanced))
+    -> BST % (is-balanced):
+  # self-balancing tree insertion
+end}
+@pygmentize["python"]{
+def insert(e, s):
+  # tree insertion but with
+  # invariants neither
+  # stated nor checked})
+  <hr/>
+@(two-langs
+"Numbers"
+"Pyret has numbers, because we believe an 8GB machine should not limit
+students to using just 32 bits."
+"Java"
+@disable-prefix{
+# this is true
+((1 / 3) * 3) == 1
+}
+@pygmentize["java"]{
+// this is not true
+((1 / 3) * 3) == 1
+})
+  <hr/>
+@(two-langs "Simple Testing"
+@disable-prefix{
+Friction in the testing process makes it hard to work even simple unit tests
+into early programming.  Pyret removes boilerplate to put testing in its
+rightful place in the programming process.}
+"Python"
+@disable-prefix{
+check:
+  empty.first raises "not-found"
+  [list: 1,2,3,4,5].first is 1
+  [list: 2,4,6,8].first is 2
+end
+}
+@pygmentize["python"]{
+import unittest
+class TestLists(unittest.TestCase):
+  def test_empty_first(self):
+    self.assertRaises(IndexError, lambda: [][0])
 
-          <h1><a name="(part._.The_.Pyret_.Programming_.Language)"></a>The Pyret Programming Language</h1>
-          </div>
-          <div class="col-md-2"></div>
-          </div>
+  def test_1to5(self):
+    self.assertEqual([1,2,3,4,5][0], 1)
+
+  def test_evens(self):
+    self.assertEqual([2,4,6,8][0], 2)
+
+if __name__ == '__main__':
+    unittest.main()
+})
+
+
+<hr/>
+@(two-langs
+"Structured Data"
+@disable-prefix{
+Being able to describe <em>data</em> well is central to designing and
+structuring programs. Pyret offers elegant mechanisms for writing data
+definitions without the cognitive or syntactic overhead of classes. We
+believe the only reason <code>__init__</code> will not become this
+generation's <code>public static void</code> is that Python textbooks
+have begun to shun structured data, returning us to the 1970s when
+everything was squeezed into a single-dimensional data structure.
+}
+"Python"
+@disable-prefix{
+data BinTree:
+  | leaf
+  | node(v, l, r)
+end}
+@pygmentize["python"]{
+class BinTree:
+  pass
+class leaf(BinTree):
+  def __init__(self):
+    pass
+class node(BinTree):
+  def __init__(self, v, l, r):
+    self.v = v
+    self.l = l
+    self.r = r
+}
+)
+
+<hr/>
+
+@(two-langs
+"Structural Data"
+@disable-prefix{
+Pyret is flexible in the use of structured data, and exposes a
+simple object pattern underlying it to allow for structural code
+alongside more nominal patterns.
+}
+"OCaml"
+@disable-prefix{
+data Animal:
+  | elephant(name, weight)
+  | tiger(name, stripes)
+  | horse(name, races-won)
+  ...
+end
+
+fun animal-name(a :: Animal):
+  a.name
+end
+}
+@pygmentize["ocaml"]{
+type animal =
+  | Elephant of string * float
+  | Tiger of string * float
+  | Horse of string * int
+  ...
+
+let name_of_animal a =
+  match a with
+    | Elephant(name, _)
+    | Tiger(name, _)
+    | Horse(name, _) -> name
+    ...
+}
+)
+
+@(two-langs "" "" "Racket"
+@disable-prefix{
+data Animal:
+  | elephant(name, weight)
+  | tiger(name, stripes)
+  | horse(name, races-won)
+  ...
+end
+
+fun animal-name(a :: Animal):
+  a.name
+end
+}
+@pygmentize["racket"]{
+(struct elephant (name weight))
+(struct tiger (name stripes))
+(struct horse (name races-won))
+...
+
+(define (animal-name a)
+  (cond
+    [(elephant? a) (elephant-name a)]
+    [(tiger? a) (tiger-name a)]
+    [(horse? a) (horse-name a)]
+    ...))
+}
+)
+
+<hr/>
+
+@(two-langs "Embracing Substitutability"
+@disable-prefix{
+A design goal of Pyret's syntax and semantics is to embrace the
+substitutability of equivalent expressions as much as possible.  This is in
+contrast to, for example, some scripting languages, in which what looks like
+binding an expression to a temporary name changes program behavior.
+}
+"JavaScript"
+@disable-prefix{
+o = @"{"
+  my-method(self, x): self.y + x end,
+  y: 10
+@"}"
+method-as-fun = o.my-method
+check:
+  o.my-method(5) is 15
+  method-as-fun(5) is 15
+end
+}
+@pygmentize["javascript"]{
+var o = @"{"
+  my_method: function(x) @"{"
+    return this.y + x;
+  @"}",
+  y: 10
+@"}"
+o.my_method(5) === 15 // true
+method_as_fun = o.my_method
+method_as_fun(5)
+// either error or NaN
+// (depending on strict mode)
+})
+
+@(two-langs "" "" 
+"Ruby"
+@disable-prefix{
+o = @"{"
+  my-method(self, x): self.y + x end,
+  y: 10
+@"}"
+method-as-fun = o.my-method
+check:
+  o.my-method(5) is 15
+  method-as-fun(5) is 15
+end
+}
+@pygmentize["ruby"]{
+o = Object.new
+def o.my_method(x)
+  self.y + x
+end
+def o.y
+  10
+end
+o.my_method(5) == 15 # true
+method_as_fun = o.my_method
+# Wrong number of arguments, 0 for 1
+})
+</div>
+
+}
+)
+
+          @(when (string-ci=? uri-path "/blog/index.html")
+            @list{
+              <h1>Welcome</h1>
+              <p>Here is some text that only goes on the blog index page,
+                because <code>@"@"uri-path</code> is
+                <code>/blog-index.html</code>.</p> })
+          @;{ Index pages for posts have @tag that's not #f }
+          @(when tag
+            @list{<h1>Posts tagged <em>@|tag|</em></h1>})
+          @;{ The main page contents are in @contents }
+          @(when (not (string-ci=? uri-path "/blog/index.html"))
+            @list{
+            <div class="row paragraph-content">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+            @|contents|
+            </div>
+            <div class="col-md-2"></div>
+            </div>
+            })
         </div>
       </div>
       <footer>
@@ -326,15 +770,19 @@ s.parentNode.insertBefore(ga, s);
     <script type="text/javascript" src="/js/codemirror.js"></script>
     <script type="text/javascript" src="/js/runmode.js"></script>
     <script type="text/javascript" src="/js/pyret.js"></script>
-<script type="text/javascript">
-  $(function(){
-    $("pre").each(function(_,code) {
-      if(!$(code).hasClass("non-pyret")) {
-        CodeMirror.runMode($(code).text(), "pyret", code);
-        $(code).addClass("cm-s-default");
-      }
-    });
-  });
-  </script>
+@(when (string-ci=? uri-path "/index.html")
+@list{
+    <script type="text/javascript">
+      $(function(){
+        $("pre").each(function(_,code) {
+          if(!$(code).hasClass("non-pyret")) {
+            CodeMirror.runMode($(code).text(), "pyret", code);
+            $(code).addClass("cm-s-default");
+          }
+        });
+      });
+      </script>
+}
+)
   </body>
 </html>
