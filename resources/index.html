@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Pyret</title>
+    <meta name="description" content="Resources: 1Documentation: This document has detailed information on the Pyret grammar and the behavior of its expression forms and built-in libraries, along with many examples and some longer descriptions of language design choices. 2Bootstrap Curricula:...">
+    <meta name="author"      content="The Pyret Crew">
+    <meta name="keywords"    content="">
+    <meta property="og:title" content="Resources">
+    <meta property="og:author" content="The Pyret Crew">
+    <meta property="og:url" content="http://pyret.org/resources/index.html">
+    <meta property="og:image" content="http://www.pyret.org/img/pyret-logo.png">
+    <meta property="og:image:secure_url" content="https://www.pyret.org/img/pyret-logo.png">
+    <meta property="og:image:type" content="image/png">
+    <meta property="og:image:width" content="444">
+    <meta property="og:image:height" content="445">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="../img/pyret-icon.png">
+    <link rel="canonical" href="http://pyret.org/resources/index.html">
+    <!-- CSS -->
+    <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/font-hack/2.019/css/hack.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="../css/codemirror.css">
+    <link rel="stylesheet" type="text/css" href="../css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="../css/custom.css">
+    <!-- Feeds -->
+    <link ref="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link ref="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-45041801-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type =
+'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' :
+'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  </head>
+  <body>
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <header class="navbar navbar-default navbar-inverse"
+            role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle"
+                  data-toggle="collapse"
+                  data-target=".our-nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="../index.html" class="navbar-brand fancyhover-above">
+            <img class="navbar-logo" src="../img/pyret-banner.png"></img>
+          </a>
+        </div>
+        <div class="collapse navbar-collapse our-nav-collapse"
+             role="navigation">
+          <ul class="nav navbar-nav">
+            <li><div class="dropdown">
+              <button class="btn btn-primary fancyhover-above dropdown-toggle"
+                      type="button"
+                      data-toggle="dropdown">
+                      About
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="../pyret-code/">Why Pyret?</a></li>
+                <!-- TODO: build a scrbl page using the old home page -->
+                <!-- <li><a href="/other-langs/">vs. Other Lanugages</a></li> -->
+                <li><a href="../crew/">Crew</a></li>
+              </ul>
+            </div></li>
+            <li><div class="dropdown">
+              <button class="btn btn-primary fancyhover-above dropdown-toggle"
+                      type="button"
+                      data-toggle="dropdown">
+                      Start Coding
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="https://code.pyret.org" target="_blank">Try it Now</a></li>
+                <li><a href="http://www.pyret.org/docs/latest/A_Tour_of_Pyret.html">Beginner Tutorial</a></li>
+              </ul>
+            </div></li>
+            <li><div class="dropdown">
+              <a class="btn btn-primary fancyhover-above" href="../resources/">Resources</a>
+            <div></li>
+            <li><div class="dropdown">
+              <button class="btn btn-primary fancyhover-above dropdown-toggle"
+                      type="button"
+                      data-toggle="dropdown">
+                      Community
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <li><a href="../discuss/">Forum</a></li>
+                <li><a href="../discuss/">News</a></li>
+                <li><a href="https://github.com/brownplt/pyret-lang/issues">Bug Report</a></li>
+                <li><a href="https://twitter.com/PyretLang">@PyretLang</a></li>
+              </ul>
+            </div></li>
+          </ul>
+        </div>
+    </header>
+
+        <!-- Main column -->
+
+
+
+
+
+          <div class="row paragraph-content">
+          <div class="col-md-2"></div>
+          <div class="col-md-8">
+
+          <h1><a name="(part._.Resources)"></a>Resources</h1>
+
+          <h1>1
+           <tt>&nbsp;</tt><a name="(part._.Documentation)"></a><a href="https://www.pyret.org/docs/latest/">Documentation</a></h1>
+
+          <p>This document has detailed information on the Pyret grammar and the behavior of
+          its expression forms and built-in libraries, along with many examples and some
+          longer descriptions of language design choices.</p>
+
+          <h1>2
+           <tt>&nbsp;</tt><a name="(part._.Bootstrap_.Curricula)"></a><a href="https://www.bootstrapworld.org">Bootstrap Curricula</a></h1>
+
+          <p>Pyret is used by the Bootstrap project, research-based curricular modules for
+          grades 6-12. All Bootstrap materials are online and free of charge. There are
+          also Bootstrap workshops for teachers to receive specialized training to deliver
+          the class.</p>
+
+          <ul>
+           <li>
+            <p><span style="font-weight: bold"><a href="http://www.bootstrapworld.org/materials/spring2017/courses/data-science/">Data Science</a></span></p>
+            <p><span style="font-style: italic">Recommended for: Grades 7-10</span></p>
+            <p>Which genre do you listen to most in your playlists? Do schools in richer areas
+          of your town do better than those in poorer ones? Our Data Science module teaches
+          students to view programs as questions we ask of data. Students form their own
+          questions about the world around them, and learn to analyze data critically and
+          carefully to find answers. Business, science, and history teachers can utilize
+          this module to help students make inferences from data. Math teachers can use
+          this module to introduce statistics in an accessible way. It also works great
+          as a module for AP CS Principles&#8217; unit on data!</p></li>
+           <li>
+            <p><span style="font-weight: bold"><a href="http://www.bootstrapworld.org/materials/spring2017/courses/reactive/">Reactive</a></span></p>
+            <p><span style="font-style: italic">Recommended for: Grades 8-11</span></p>
+            <p>Bootstrap:Reactive goes deeper into programming, building events and data
+          structures on top of the foundation laid by our intro courses and allowing
+          students to build far more sophisticated programs. Students learn how the event
+          loop that drives their Bootstrap:Algebra game works, and use it to create
+          animations using simple datatypes. They then learn about data structures,
+          and design a structure for a sophisticated game of their own design.
+          Bootstrap:Reactive is aligned to the CSTA standards and K12CS frameworks.</p></li>
+           <li>
+            <p><span style="font-weight: bold"><a href="http://www.bootstrapworld.org/materials/spring2017/courses/physics/">Physics</a></span></p>
+            <p><span style="font-style: italic">Recommended for: Grades 9-10</span></p>
+            <p>This module is developed in partnership with the American Association of Physics
+          Teachers &amp; American Modeling Teachers Association. It helps students understand
+          dynamics concepts by using programming to build models of the physical world.
+          The module is targeted at ninth grade, a year in which every student is expected
+          to take science. The module is aligned to the Physics First movement, allowing
+          teachers to present computational modeling as a basic tool to students preparing
+          to study science more broadly.</p></li></ul>
+
+          <h1>3
+           <tt>&nbsp;</tt><a name="(part._.Textbook)"></a>Textbook</h1>
+
+          <ul>
+           <li>
+            <p><span style="font-weight: bold"><a href="http://www.htdp.org/">How to Design Programs</a></span></p>
+            <p>Pyret is driven by the&#160;How to Design Programs&#160;(HtDP) philosophy of programming
+          education; one could almost view it as a language designed to make teaching from
+          HtDP comfortable.&#160;</p></li>
+           <li>
+            <p><span style="font-weight: bold"><a href="http://papl.cs.brown.edu/2016/">Programming and Programming Languages</a></span></p>
+            <p>However, we also have our own curricular ideas that extend or run parallel to
+          those of HtDP, which we are steadily writing up in&#160;Programming and Programming
+          Languages&#160;(PAPL). PAPL both exclusively uses Pyret and is slowly turning
+          into a definitive book for teaching with it.</p>
+            <p>PAPL has been used in
+          <a href="https://cs.brown.edu/courses/cs173/2017/">Porgramming Languages</a> (Brown University, CSCI 1730),
+          <a href="https://www.mtholyoke.edu/~blerner/cs343/index.html">Programming Language Design and Implementation</a> (Mount Holyoke College, CS 343),
+          <a href="http://oucsace.cs.ohiou.edu/~gstewart/courses/3200-17/">Organization of Programing Languages</a> (Ohio University, CS 3200),
+          <a href="https://robertutterback.github.io/courses/comp325/f17/">Organization of Programing Languages</a> (Monmouth College, COMP 325),
+          <a href="http://cs.berry.edu/~nhamid/classes/csc420pl/17-spr/pmwiki.php/Main/Syllabus">Advanced Topics in Computer Science</a> (Berry College, CSC 420),
+          <a href="http://dlicata.web.wesleyan.edu/teaching/htdp-f17/">How to Design Programs</a> (Wesleyan University, COMP 115), and
+          <a href="https://www.cs.swarthmore.edu/~jpolitz/cs91/s15/">Programming Languages</a> (Swarthmore College, CS91)</p></li></ul>
+          </div>
+          <div class="col-md-2"></div>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated
+        by <a href="https://github.com/greghendershott/frog">Frog</a>,
+        the <strong>fr</strong>ozen bl<strong>og</strong> tool.</p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="//code.jquery.com/jquery.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.min.js"></script>
+    <script>
+      $(".info").popover({ placement: "left" });
+    </script>
+    <script type="text/javascript" src="../js/codemirror.js"></script>
+    <script type="text/javascript" src="../js/runmode.js"></script>
+    <script type="text/javascript" src="../js/pyret.js"></script>
+
+  </body>
+</html>
